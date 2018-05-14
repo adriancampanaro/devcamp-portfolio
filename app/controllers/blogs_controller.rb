@@ -40,15 +40,17 @@ class BlogsController < ApplicationController
 
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
-  def update
+   def update
+    @blog = Blog.friendly.find(params[:id])
     respond_to do |format|
       if @blog.update(blog_params)
-        format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }        
+        format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
       else
         format.html { render :edit }
       end
     end
   end
+
 
   # DELETE /blogs/1
   # DELETE /blogs/1.json
@@ -72,7 +74,7 @@ class BlogsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_blog
+    def set_blog      
       @blog = Blog.friendly.find(params[:id])
     end
 
