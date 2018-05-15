@@ -1,11 +1,22 @@
 class PortfoliosController < ApplicationController
 	def index
 		@portfolios_items = Portfolio.all
+    #@portfolios_items = Portfolio.where(subtitle: 'Ruby on Rails')
+    #@portfolios_items = Portfolio.where(subtitle: 'Angular')
+    #@portfolios_items = Portfolio.angular
+    #@portfolios_items = Portfolio.ruby_on_rails_portfolios_items
 	end
+
+  def angular
+    @angular_portfolios_items = Portfolio.angular
+  end
+
 
 	def new
 		@portfolio_item = Portfolio.new
 		### create something from scratch
+    3.times {@portfolio_item.technologies.build}
+    ### create 3 technologies to new portfolio
 	end
 
 	# GET /portfolios/1
@@ -16,7 +27,7 @@ class PortfoliosController < ApplicationController
 
   	# POST /portfolios
   	def create
-    	@portfolio_item = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body))
+    	@portfolio_item = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body, technologies_attributes: [:name]))
     	### telling form what is allowed to access
     	### these are the parameters allowed to go through the system
     	
