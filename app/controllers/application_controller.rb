@@ -1,14 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  include DeviseWhitelist
+  	include DeviseWhitelist
+	include SetSource	
 
-	 before_action :set_source
-
-  def set_source
-  	## set sessions if it exists  	
-  	session[:source] = params[:q] if params[:q]
-  end
 
   ### run this before all other controllers
   ### :devise_controller
