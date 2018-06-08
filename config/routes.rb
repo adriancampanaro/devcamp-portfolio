@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'angular-items', to: 'portfolios#angular'
   get 'tester123', to: 'portfolios#test123'
   
+  ### takes in ID paraamters nad mapped to show parameter
   get 'portfolio/:id', to: 'portfolios#show', as: 'portfolio_show'
 
   #get 'pages/home'  

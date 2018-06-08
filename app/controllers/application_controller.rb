@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
 
   include DeviseWhitelist
 
+	 before_action :set_source
+
+  def set_source
+  	## set sessions if it exists  	
+  	session[:source] = params[:q] if params[:q]
+  end
 
   ### run this before all other controllers
   ### :devise_controller
